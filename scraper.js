@@ -4,6 +4,8 @@ exports.handler = async function (context, event, callback) {
   const axios = require("axios");
   const cheerio = require("cheerio");
 
+console.log("running the scraper now")
+
   // --------------------------------------------------------------------------
   // 1. Scraping functions – return exactly what the HTML provides.
   // --------------------------------------------------------------------------
