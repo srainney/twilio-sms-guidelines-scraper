@@ -2,26 +2,30 @@ name: Weekly SMS Guidelines Update
 
 on:
   schedule:
-    - cron: "0 0 * * 0"  # every Sunday at 00:00 UTC
-  workflow_dispatch:     # allows manual triggering
+    - cron: "0 0 * * 0"   # every Sunday at 00:00 UTC
+  workflow_dispatch:       # allows manual triggering
 
 jobs:
   update:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repo
         uses: actions/checkout@v3
+
+      # Optional step to list files in the repo for debugging.
+      - name: List Project Files
+        run: ls -la
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-
-      - name: Install dependencies
+        
+      - name: Install Dependencies
         run: npm install
 
-      - name: Run scraper
+      - name: Run Scraper
         env:
           AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
           AIRTABLE_TABLE_NAME: ${{ secrets.AIRTABLE_TABLE_NAME }}
